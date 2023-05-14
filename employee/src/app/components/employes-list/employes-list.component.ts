@@ -15,6 +15,7 @@ export class EmployesListComponent implements OnInit , OnDestroy {
  @ViewChild("dt") tt: Table;
   employeeList:any=[];
   filterFields:any=['name','username'];
+  loading:boolean=true;
   totalRecords:number=0;
 
    private destroy$: Subject<void> = new Subject();
@@ -42,7 +43,8 @@ export class EmployesListComponent implements OnInit , OnDestroy {
       this.employeeService.getAllEmployeees()
             .pipe(takeUntil(this.destroy$))
             .subscribe(res =>{
-              this.employeeList = res
+              this.employeeList = res;
+              this.loading=false;
               this.totalRecords =   this.employeeList.length;   
             } );
   }

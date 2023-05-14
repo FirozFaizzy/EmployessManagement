@@ -15,9 +15,10 @@ import { Subject, takeUntil } from 'rxjs';
 
 export class EmployesDetailsComponent implements OnInit  , OnDestroy{
   addTask: FormGroup;
+  filterFields:any=['id','task','status'];
   isCompleted:boolean=false;
   isNotCompleted:boolean=false;
-  filterFields:any=['id','task','status'];
+  loading:boolean=true;
   showNewtask:boolean=false;
   submitted:boolean=false;
   taskList:task[];
@@ -120,6 +121,7 @@ export class EmployesDetailsComponent implements OnInit  , OnDestroy{
        });
          this.employeeService.updateTask(this.taskList);
          this.tempTask=this.taskList;
+         this.loading=false;
          this.totalRecords =   this.taskList.length;   
             } );
   }
