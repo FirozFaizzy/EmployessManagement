@@ -1,0 +1,13 @@
+<nav class="navbar navbar-expand navbar-dark bg-dark d-flex justify-content-end" *ngIf="user">
+    <div class="navbar-nav">
+        <div class="col-md-12 ">
+          
+  <button pButton label="Logout" class="p-button-secondary" icon="pi pi-sign-out" (click)="logout(true)"></button>
+        </div>
+        
+    </div>
+</nav>
+<div class="app-container" [ngClass]="{ 'bg-light': user }">
+
+    <router-outlet></router-outlet>
+</div>
