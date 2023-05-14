@@ -1,17 +1,19 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { task } from '../../models/task';
 import { EmployeeService } from '../../services/employee.service';
 
-import { first } from 'rxjs';
+import { Subject, takeUntil } from 'rxjs';
+
 @Component({
   selector: 'app-employes-details',
   templateUrl: './employes-details.component.html',
   styleUrls: ['./employes-details.component.css']
 })
-export class EmployesDetailsComponent implements OnInit {
+
+export class EmployesDetailsComponent implements OnInit  , OnDestroy{
   addTask: FormGroup;
   isCompleted:boolean=false;
   isNotCompleted:boolean=false;
@@ -23,6 +25,7 @@ export class EmployesDetailsComponent implements OnInit {
   totalRecords:number=0;
   userId:number=0;
 
+  private destroy$: Subject<void> = new Subject();
   constructor( private fb: FormBuilder,private route:ActivatedRoute ,private employeeService:EmployeeService,private router:Router) { }
 
   ngOnInit(): void {
@@ -32,6 +35,11 @@ export class EmployesDetailsComponent implements OnInit {
       this.createForm();
     });
     
+  }
+
+    ngOnDestroy(): void {
+    this.destroy$.next();
+    this.destroy$.complete();
   }
 
   onClickTask(value:boolean=true):void{
@@ -102,7 +110,7 @@ export class EmployesDetailsComponent implements OnInit {
 
   private getTask(id:number):void{
   this.employeeService.getTask(id)
-            .pipe(first())
+            .pipe(takeUntil(this.destroy$))
             .subscribe(res =>{
               this.taskList = res;
                this.taskList.map((data, index) => {         //added status for filter

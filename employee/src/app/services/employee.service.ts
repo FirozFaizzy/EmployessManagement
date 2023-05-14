@@ -32,7 +32,7 @@ export class EmployeeService {
        getAllEmployeees() {
         return this.http.get<any[]>(`https://jsonplaceholder.typicode.com/users`);
        }
-      getTask(id: number) {
+      getTask(id: number){
         return this.http.get<task[]>(`https://jsonplaceholder.typicode.com/users/${id}/todos`);
       }
 

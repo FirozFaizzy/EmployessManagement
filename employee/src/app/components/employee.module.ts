@@ -10,13 +10,13 @@ import { CommonModule } from "@angular/common";
 @NgModule({
   declarations: [
  EmployesListComponent,
-EmployesDetailsComponent,
+ EmployesDetailsComponent,
   ],
   imports: [
- PrimeNgModule,
-   CommonModule,
+  PrimeNgModule,
+  CommonModule,
   ReactiveFormsModule,
-    RouterModule.forChild([
+  RouterModule.forChild([
        {
     path: "",
     pathMatch: "full",
