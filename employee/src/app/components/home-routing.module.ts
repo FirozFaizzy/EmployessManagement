@@ -2,8 +2,6 @@ import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
 import { HomeComponent } from "./home/home.component";
 
-
-
 const routes: Routes = [
   {
     path: "",
@@ -13,15 +11,12 @@ const routes: Routes = [
         path: "employees",
         loadChildren: () =>
           import("./employee.module").then((m) => m.EmployeModule),
-      } 
-      ,
-       
+      },
       {
         path: "",
         pathMatch: "full",
-        redirectTo:'employee',
+        redirectTo: "employee",
       },
-       
     ],
   },
 ];

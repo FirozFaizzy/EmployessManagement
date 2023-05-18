@@ -8,24 +8,26 @@ import { ReactiveFormsModule } from "@angular/forms";
 import { CommonModule } from "@angular/common";
 
 @NgModule({
-  declarations: [
- EmployesListComponent,
- EmployesDetailsComponent,
-  ],
+  declarations: [EmployesListComponent, EmployesDetailsComponent],
   imports: [
-  PrimeNgModule,
-  CommonModule,
-  ReactiveFormsModule,
-  RouterModule.forChild([
-       {
-    path: "",
-    pathMatch: "full",
-    redirectTo: "list",
-  },
-    { path: 'list', component: EmployesListComponent,canActivate:[AuthGuard]},
-     {
+    PrimeNgModule,
+    CommonModule,
+    ReactiveFormsModule,
+    RouterModule.forChild([
+      {
+        path: "",
+        pathMatch: "full",
+        redirectTo: "list",
+      },
+      {
+        path: "list",
+        component: EmployesListComponent,
+        canActivate: [AuthGuard],
+      },
+      {
         path: "tasks/:id",
-        component: EmployesDetailsComponent,canActivate:[AuthGuard]
+        component: EmployesDetailsComponent,
+        canActivate: [AuthGuard],
       },
     ]),
   ],

@@ -8,14 +8,8 @@ import { HomeComponent } from "./home/home.component";
 import { HomeRoutingModule } from "./home-routing.module";
 
 @NgModule({
-  declarations: [
- HomeComponent,
-  ],
-  imports: [
-  PrimeNgModule,
-   CommonModule,
-   HomeRoutingModule
-  ],
+  declarations: [HomeComponent],
+  imports: [PrimeNgModule, CommonModule, HomeRoutingModule],
   providers: [],
   bootstrap: [],
 })
